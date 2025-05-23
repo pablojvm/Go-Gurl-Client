@@ -1,0 +1,32 @@
+div {
+    width: 100%;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color:  rgb(250, 185, 240);
+    
+}
+
+#menu {
+
+    height: 40px;
+    width: 35px;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+}
+
+ul {
+    margin-top: 50px;
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
