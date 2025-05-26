@@ -64,7 +64,7 @@ function InformationPage() {
       >
         
         {queens &&
-          queens.slice(0,4).map((eachQueen, i) => {
+          queens.slice(23,27).map((eachQueen, i) => {
             return (
               <Card key={i} style={{ width: "18rem" }}>
                 <Card.Img src={eachQueen.image} />
