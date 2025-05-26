@@ -10,13 +10,12 @@ function DragQueenCard() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [params.id]);
 
   const getData = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/information/${params.queenId}`)
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/informationPage/${params.id}`)
       setQueens(response.data)
-
     } catch (error) {
       console.log(error)
     }

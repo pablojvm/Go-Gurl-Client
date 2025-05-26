@@ -9,22 +9,55 @@ import SideBar from "./componentes/SideBar";
 import Footer from "./componentes/Footer";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import DragQueenCard from "./paginas/DragQueenCard";
+// import { useState } from 'react';
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { Link } from "react-router-dom";
 
 function App() {
+  const [show, setShow] = useState(false);
 
-  const [sideBar, setSideBar] = useState(false)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <div id="App">
-      <NavBar toggleSideBar={() => setSideBar(!sideBar)}/>
+      <NavBar handleShow={handleShow} />
       <div>
-        <SideBar visible={sideBar} />
+        <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <ul>
+              <li>
+                <Link to="/">Inicio</Link>
+              </li>
+
+              <li>
+                <Link to="/yourLists">Tus Favoritos</Link>
+              </li>
+
+              <li>
+                <Link to="/informationPage">Investiga!</Link>
+              </li>
+
+              <li>
+                <Link to="/aboutUs">Conócenos!</Link>
+              </li>
+            </ul>
+          </Offcanvas.Body>
+        </Offcanvas>
 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/yourLists" element={<YourLists />} />
-          <Route path="/informationPage" element={<InformationPage id="information"/>} />
-          <Route path="/informationPage/:idDragQueen" element="" />
+          <Route path="/informationPage" element={<InformationPage />} />
+          <Route
+            path="/informationPage/:idDragQueen"
+            element={<DragQueenCard />}
+          />
           <Route path="/informationPage/:idSeason" element="" />
           <Route path="/informationPage/:idChapter" element="" />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -32,7 +65,7 @@ function App() {
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
-      <Footer id="footer"/>
+      <Footer id="footer" />
     </div>
   );
 }

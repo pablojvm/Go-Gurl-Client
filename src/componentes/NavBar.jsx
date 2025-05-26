@@ -1,12 +1,13 @@
 import React from 'react'
 import "./Navbar.css"
+import Button from 'react-bootstrap/Button';
 
-function NavBar({toggleSideBar}) {
+function NavBar({handleShow}) {
   return (
     <div id="navbar">
-      <button onClick={toggleSideBar} >
+      <Button variante="primary" onClick={handleShow} >
         <img src="../public/menu.png" id="menu"></img>
-      </button>
+      </Button>
       <img src="../public/logo.png" id="logo"></img>
     </div>
   )

@@ -1,64 +1,139 @@
 import "./InformationPage.css";
 import { useParams } from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Carousel from "react-bootstrap/Carousel";
+import ExampleCarouselImage from "../componentes/ExampleCarouselImage";
 
 function InformationPage() {
+  const params = useParams();
+  const [queens, setQueens] = useState([]);
+  const [seasons, setSeasons] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
 
-  const params = useParams()
-  const [queens, setQueens] = useState([])
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_SERVER_URL}/queens`)
+      .then((response) => {
+        setQueens(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  useEffect (() => {
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_SERVER_URL}/seasons`)
+      .then((response) => {
+        setSeasons(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/information`)
-    .then((response) => {
-      setQueens(response.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }, [])
-
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_SERVER_URL}/episodes`)
+      .then((response) => {
+        setEpisodes(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div id="serchbar">
-      <input></input>
-      <label></label>
-      {queens &&
-        queens.map((eachQueen, i) => {
-          return (
-            <div key={i}>
-              <Link to={"/information/" + eachQueen.id}>
-                <div
-                  className="card m-2 p-2 text-center"
-                  style={{ width: "24rem", height: "18rem" }}
-                >
-                  <div className="card-body">
-                    <img
-                      src={eachQueen.image}
-                      style={{ height: "6rem" }}
-                      alt={"image of" + eachQueen.name}
-                    />
-                    <h5 className="card-title text-truncate mt-2">
-                      {eachQueen.name}
-                    </h5>
-                    <h6 className="card-subtitle mb-3 text-muted">
-                      <em>{eachQueen.season}</em>
-                    </h6>
-                    <p className="card-text">
-                      Season: {eachQueen.winner}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
-
-      {/* <DragQueenCard />
-      <SeasonCard />
-      <EpisodeCard /> */}
+      <form>
+        <input></input>
+        <label></label>
+      </form>
+      <h2>Nuestras Reinas</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        
+        {queens &&
+          queens.slice(0,4).map((eachQueen, i) => {
+            return (
+              <Card key={i} style={{ width: "18rem" }}>
+                <Card.Img src={eachQueen.image} />
+                <Card.Body>
+                  <Card.Title>{eachQueen.name}</Card.Title>
+                  <Card.Text>
+                    Ejemplo aqui antes de introducir el texto
+                  </Card.Text>
+                  <Link to={"/informationPage/" + eachQueen.id}>
+                    <Button>+ info</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+      </div>
+      <h2>Nuestras Temporadas</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        {seasons &&
+          seasons.map((eachSeason, i) => {
+            return (
+              <Card style={{ width: "18rem" }} key={i}>
+                <Card.Img src={eachSeason.image} />
+                <Card.Body>
+                  <Card.Title>{eachSeason.name}</Card.Title>
+                  <Card.Text>
+                    Ejemplo aqui antes de introducir el texto
+                  </Card.Text>
+                  <Link to={"/informationPage/" + eachSeason.id}>
+                    <Button>+ info</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+      </div>
+      <h2>Episodios</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        {episodes &&
+          episodes.slice(0, 4).map((eachEpisode, i) => {
+            return (
+              <Card key={i} style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{eachEpisode.title}</Card.Title>
+                  <Card.Text>
+                    Ejemplo aqui antes de introducir el texto
+                  </Card.Text>
+                  <Link to={"/informationPage/" + eachEpisode.id}>
+                    <Button>+ info</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+      </div>
     </div>
   );
 }
