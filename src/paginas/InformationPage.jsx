@@ -98,7 +98,7 @@ function InformationPage() {
                 <Card.Body>
                   <Card.Title>{eachSeason.name}</Card.Title>
                   <Card.Text>
-                    Ejemplo aqui antes de introducir el texto
+                    {eachSeason.capitulos}
                   </Card.Text>
                   <Link to={"/informationPage/" + eachSeason.id}>
                     <Button>+ info</Button>

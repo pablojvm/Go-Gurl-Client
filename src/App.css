@@ -2,7 +2,9 @@ body {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  
+  background-image: url(../public/57.webp);
+  background-repeat: no-repeat;
+  background-size: contain ; 
 }
 
 #App {

@@ -1,12 +1,12 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function DragQueenCard() {
-
-  const params = useParams()
-  const [queen, setQueens] = useState(null)
-  const navigate = useNavigate()
+  const params = useParams();
+  const [queen, setQueens] = useState(null);
 
   useEffect(() => {
     getData();
@@ -14,24 +14,38 @@ function DragQueenCard() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/informationPage/${params.id}`)
-      setQueens(response.data)
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`
+      );
+      setQueens(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
-  if (!queen) return <p>Loading...</p>
+  if (!queen) return <p>Loading...</p>;
 
   return (
-    <div>
-      <div>
-      <h1>{queen.name}</h1>
-      <p>{queen.description}</p>
-      <img src={queen.imageUrl} alt={queen.name} />
-    </div>
-    </div>
-  )
+
+    <Card style={{ width: "18rem" }}>
+      <Card.Img src={queen.image} />
+      <Card.Body>
+        <Card.Title>{queen.name}</Card.Title>
+        <Card.Text>Ejemplo aqui antes de introducir el texto</Card.Text>
+        <p>Winner:{queen.winner ? "👑" : "❌"}</p>
+        <p>Miss Congeniality:{queen.missCongeniality ? "👑" : "❌"}</p>
+        <p>{queen.description}</p>
+        <Button
+          variant="primary"
+          as={Link}
+          to="/informationPage"
+          style={{ width: "70px" }}
+        >
+          Back
+        </Button>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default DragQueenCard
+export default DragQueenCard;

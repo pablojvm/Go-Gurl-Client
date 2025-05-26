@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 function NavBar({handleShow}) {
   return (
     <div id="navbar">
-      <Button variante="primary" onClick={handleShow} >
+      <Button variant="outline-light" onClick={handleShow} >
         <img src="../public/menu.png" id="menu"></img>
       </Button>
       <img src="../public/logo.png" id="logo"></img>
