@@ -12,6 +12,7 @@ import DragQueenCard from "./paginas/DragQueenCard";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
 import EpisodeCard from "./paginas/EpisodeCard";
+import CreateQueen from "./paginas/CreateQueen";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -52,9 +53,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/yourLists" element={<YourLists />} />
           <Route path="/informationPage" element={<InformationPage />} />
-          <Route path="/informationPage/:idDragQueen" element={<DragQueenCard />} />
-          <Route path="/informationPage/:idSeason" element="" />
-          <Route path="/informationPage/:idEpisode" element={<EpisodeCard />} />
+          <Route path="/informationPage/queens/:idDragQueen" element={<DragQueenCard />} />
+          <Route path="/createQueen" element={<CreateQueen />} />
+          <Route path="/informationPage/seasons/:idSeason" element="" />
+          <Route path="/informationPage/episodes/:idEpisode" element={<EpisodeCard />} />
           <Route path="/aboutUs" element={<AboutUs />} />
 
           <Route path="*" element={<Error404 />} />

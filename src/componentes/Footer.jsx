@@ -1,8 +1,7 @@
-import React from 'react'
 
 function Footer() {
   return (
-    <div>
+    <div style={{textAlign: "center", marginTop:"20px"}}>
        <p>Go!Gurl! Todos los derechos reservados.</p>
        <p>Contacto</p>
     </div>

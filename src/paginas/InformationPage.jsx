@@ -11,6 +11,7 @@ import ExampleCarouselImage from "../componentes/ExampleCarouselImage";
 function InformationPage() {
   const params = useParams();
   const [queens, setQueens] = useState([]);
+  const [displayedQueens, setDisplayedQueens] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [episodes, setEpisodes] = useState([]);
 
@@ -24,6 +25,17 @@ function InformationPage() {
         console.log(err);
       });
   }, []);
+
+  const deleteQueen = (idToDelete) => {
+    axios.delete(`${import.meta.env.VITE_SERVER_URL}/queens/${idToDelete}`)
+    .then(() => {
+      setQueens((queenEliminada) => queenEliminada.filter((queen) => queen.id !== idToDelete))
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    
+  }; 
 
   useEffect(() => {
     axios
@@ -64,18 +76,50 @@ function InformationPage() {
       >
         
         {queens &&
-          queens.slice(23,27).map((eachQueen, i) => {
+          queens.slice(0, 4).map((eachQueen, i) => {
             return (
               <Card key={i} style={{ width: "18rem" }}>
                 <Card.Img src={eachQueen.image} />
                 <Card.Body>
                   <Card.Title>{eachQueen.name}</Card.Title>
                   <Card.Text>
-                    Ejemplo aqui antes de introducir el texto
+                    {eachQueen.description}
                   </Card.Text>
-                  <Link to={"/informationPage/" + eachQueen.id}>
+                  <Link to={"/informationPage/queens/" + eachQueen.id}>
                     <Button>+ info</Button>
                   </Link>
+                    <Button onClick={() => deleteQueen(eachQueen.id)}>Sashay!</Button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+      </div>
+      <Link to={"/createQueen"}>
+      <Button style={{marginTop:"20px"}}>Crea tu propia REINA!</Button>
+      </Link>
+      <h2>Tus reinas</h2>
+      <div 
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "15px"
+        }}>
+      {queens &&
+          queens.slice(46).map((eachQueen, i) => {
+            return (
+              <Card key={i} style={{ width: "18rem" }}>
+                <Card.Img src={eachQueen.image} />
+                <Card.Body>
+                  <Card.Title>{eachQueen.name}</Card.Title>
+                  <Card.Text>
+                    {eachQueen.description}
+                  </Card.Text>
+                  <Link to={"/informationPage/queens/" + eachQueen.id}>
+                    <Button>+ info</Button>
+                  </Link>
+                    <Button onClick={() => deleteQueen(eachQueen.id)}>Sashay!</Button>
                 </Card.Body>
               </Card>
             );
@@ -100,7 +144,7 @@ function InformationPage() {
                   <Card.Text>
                     {eachSeason.capitulos}
                   </Card.Text>
-                  <Link to={"/informationPage/" + eachSeason.id}>
+                  <Link to={"/informationPage/seasoms/" + eachSeason.id}>
                     <Button>+ info</Button>
                   </Link>
                 </Card.Body>
@@ -126,7 +170,7 @@ function InformationPage() {
                   <Card.Text>
                     Ejemplo aqui antes de introducir el texto
                   </Card.Text>
-                  <Link to={"/informationPage/" + eachEpisode.id}>
+                  <Link to={"/informationPage/episodes" + eachEpisode.id}>
                     <Button>+ info</Button>
                   </Link>
                 </Card.Body>

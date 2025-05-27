@@ -3,10 +3,32 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import EditCard from "../componentes/EditCard";
 
 function DragQueenCard() {
   const params = useParams();
   const [queen, setQueens] = useState(null);
+  const [mostrarComponente, setMostrarComponente] = useState(false)
+
+  const handleClick = () => {
+    setMostrarComponente(true)
+  }
+  const handleClose = () => {
+    setMostrarComponente(false)
+  }
+  const handleUpdate = async (updatedData) => {
+  try {
+    const response = await axios.patch(
+      `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
+      updatedData
+    );
+    setQueens(response.data);
+    setMostrarComponente(false); 
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   useEffect(() => {
     getData();
@@ -26,15 +48,17 @@ function DragQueenCard() {
   if (!queen) return <p>Loading...</p>;
 
   return (
-
+    <div style={{display:"flex", justifyContent: "center"}}>
+      <div>
     <Card style={{ width: "18rem" }}>
       <Card.Img src={queen.image} />
       <Card.Body>
         <Card.Title>{queen.name}</Card.Title>
-        <Card.Text>Ejemplo aqui antes de introducir el texto</Card.Text>
+        <Card.Text>
         <p>Winner:{queen.winner ? "👑" : "❌"}</p>
         <p>Miss Congeniality:{queen.missCongeniality ? "👑" : "❌"}</p>
         <p>{queen.description}</p>
+        </Card.Text>
         <Button
           variant="primary"
           as={Link}
@@ -43,8 +67,21 @@ function DragQueenCard() {
         >
           Back
         </Button>
+        <Button
+          variant="primary"
+          style={{ width: "70px", marginLeft: "5px"}}
+          onClick={handleClick}
+        >
+          Edit
+        </Button>
       </Card.Body>
     </Card>
+    </div>
+    <div>
+      {mostrarComponente && <EditCard onClose={handleClose} onUpdate={handleUpdate} queenData={queen}/>}
+    </div>
+    </div>
+    
   );
 }
 
