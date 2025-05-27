@@ -4,15 +4,16 @@ import Carousel from "react-bootstrap/Carousel";
 
 function Home() {
   return (
-    <div id="encabezado" style={{ textAlign: "center", color: "white" }}>
+    <div id="encabezado" style={{ color: "white", display: "flex", flexDirection: "column", alignItems: "center"}}>
       <h1>Bienvenido a</h1>
-      <img src="/public/logo.png" style={{ height: "250px" }} />
-
+      <img src="/public/logo.png" style={{ width: "400px" }} />
+      <div id="text">
       <p>
         En este lugar encontraras toda la información acerca del concurso mas
-        mariquita de la herstory! Te invitamos a navegar web por nuestra y a
+        mariquita de la herstory! Te invitamos a navegar por nuestra web y a
         elegir a tus travestis, tempporadas y capitulos favoritos.
       </p>
+      </div>
       <h2>Conoce a los Jueces</h2>
       <Carousel className="w-50">
         <Carousel.Item>

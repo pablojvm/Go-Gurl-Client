@@ -94,7 +94,7 @@ function InformationPage() {
       <Link to={"/createQueen"}>
       <Button style={{marginTop:"20px"}}>Crea tu propia REINA!</Button>
       </Link>
-      <h2>Tus reinas</h2>
+      {queens.length > 46 && <h2>Tus reinas</h2>}
       <div 
         style={{
           display: "flex",

@@ -17,3 +17,11 @@ h2 {
   font-style: normal;
   margin-top: 10px;
 }
+
+#text {
+  font-size: 30px;
+  width: 400px;
+  border: 5px solid rgb(254, 93, 214);
+  border-radius: 10px;
+
+}

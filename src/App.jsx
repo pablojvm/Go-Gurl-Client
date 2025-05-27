@@ -25,7 +25,7 @@ function App() {
     <div id="App">
       <NavBar handleShow={handleShow} />
       <div>
-        <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas className="" show={show} onHide={handleClose}>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Menu</Offcanvas.Title>
           </Offcanvas.Header>
