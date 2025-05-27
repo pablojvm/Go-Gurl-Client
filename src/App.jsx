@@ -13,6 +13,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
 import EpisodeCard from "./paginas/EpisodeCard";
 import CreateQueen from "./paginas/CreateQueen";
+import SeasonCard from "./paginas/SeasonCard";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -55,7 +56,7 @@ function App() {
           <Route path="/informationPage" element={<InformationPage />} />
           <Route path="/informationPage/queens/:idDragQueen" element={<DragQueenCard />} />
           <Route path="/createQueen" element={<CreateQueen />} />
-          <Route path="/informationPage/seasons/:idSeason" element="" />
+          <Route path="/informationPage/seasons/:idSeason" element={<SeasonCard />} />
           <Route path="/informationPage/episodes/:idEpisode" element={<EpisodeCard />} />
           <Route path="/aboutUs" element={<AboutUs />} />
 

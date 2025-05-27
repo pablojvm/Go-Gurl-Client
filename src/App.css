@@ -2,9 +2,10 @@ body {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  background-image: url(../public/57.webp);
+  background-color: rgb(255, 214, 254);
   background-repeat: no-repeat;
   background-size: contain ; 
+  color: white;
 }
 
 #App {

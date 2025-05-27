@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Carousel from "react-bootstrap/Carousel";
-import ExampleCarouselImage from "../componentes/ExampleCarouselImage";
 
 function InformationPage() {
   const params = useParams();
   const [queens, setQueens] = useState([]);
-  const [displayedQueens, setDisplayedQueens] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [episodes, setEpisodes] = useState([]);
 
@@ -144,7 +141,7 @@ function InformationPage() {
                   <Card.Text>
                     {eachSeason.capitulos}
                   </Card.Text>
-                  <Link to={"/informationPage/seasoms/" + eachSeason.id}>
+                  <Link to={"/informationPage/seasons/" + eachSeason.id}>
                     <Button>+ info</Button>
                   </Link>
                 </Card.Body>
@@ -170,7 +167,7 @@ function InformationPage() {
                   <Card.Text>
                     Ejemplo aqui antes de introducir el texto
                   </Card.Text>
-                  <Link to={"/informationPage/episodes" + eachEpisode.id}>
+                  <Link to={"/informationPage/episodes/" + eachEpisode.id}>
                     <Button>+ info</Button>
                   </Link>
                 </Card.Body>

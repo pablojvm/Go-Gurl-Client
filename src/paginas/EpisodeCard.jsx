@@ -6,30 +6,40 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 function EpisodeCard() {
-  const params = useParams();
-  const [episode, setEpisode] = useState(null);
+  
+  const params = useParams()
+  const [episode, setEpisode] = useState(null)
 
   useEffect(() => {
+    if (!params.idEpisode) return;
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/episodes/${params.idEpisode}`
+        );
+        setEpisode(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getData();
-  }, [params.idEpisode]);
+  }, [params.idEpisode]); 
 
-  const getData = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/episodes/${params.idEpisode}`);
-      setEpisode(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (!episode) return <p>Loading...</p>;
+  if (!episode) {
+    return <p>Trayendo el episodio...</p>;
+  }
 
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
         <Card.Title>{episode.title}</Card.Title>
-        <Card.Text>Ejemplo aqui antes de introducir el texto</Card.Text>
+
+        <Card.Text>
+          <p>Ganadora: {episode.episodeWinner}</p>
+          <p>Nº del capitulo: {episode.numberEpisode}</p>
+          <p>Ejemplo aqui antes de introducir el texto</p>
+        </Card.Text>
 
         <Button
           variant="primary"
