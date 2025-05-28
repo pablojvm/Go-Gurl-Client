@@ -17,10 +17,10 @@ function EditCard({ onClose, onUpdate, queenData }) {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex"}}>
       <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Img src={queenData.image} />
+        <Card style={{ flexDirection: "row"}}>
+          <Card.Img src={queenData.image} style={{width: "18rem", height:"25rem"}}/>
           <Card.Body>
             <form onSubmit={handleFormSubmit}>
               <label>Name:</label>

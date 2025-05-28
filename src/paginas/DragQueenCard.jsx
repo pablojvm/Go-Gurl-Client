@@ -9,6 +9,12 @@ function DragQueenCard() {
   const params = useParams();
   const [queen, setQueens] = useState(null);
   const [mostrarComponente, setMostrarComponente] = useState(false)
+  const [imagenActual, setImagenActual] = useState(0)
+
+  const cambiarImagen = () => {
+    setImagenActual((img) => 
+    queen.image.length > 1 ? (img === 0 ? 1 : 0) : 0)
+  }
 
   const handleClick = () => {
     setMostrarComponente(true)
@@ -48,10 +54,10 @@ function DragQueenCard() {
   if (!queen) return <p>Loading...</p>;
 
   return (
-    <div style={{display:"flex", justifyContent: "center"}}>
+    <div style={{display:"flex"}}>
       <div>
-    <Card style={{ width: "18rem" }}>
-      <Card.Img src={queen.image} />
+    <Card style={{ flexDirection: "row", marginRight:"10px"}}>
+      <Card.Img src={queen.image[imagenActual]} style={{width:"25rem", height:"25rem"}}/>
       <Card.Body>
         <Card.Title>{queen.name}</Card.Title>
         <Card.Text>
@@ -88,6 +94,9 @@ function DragQueenCard() {
         >
           Edit
         </Button>
+        {queen.image.length > 1 && (
+        <Button onClick={cambiarImagen} style={{marginLeft: "5px"}}>Cambiar imagen</Button>
+      )}
       </Card.Body>
     </Card>
     </div>

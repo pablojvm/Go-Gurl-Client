@@ -30,15 +30,16 @@ function SeasonCard() {
     return <p>Cargando temporada...</p>;
   }
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img src={season.image} />
+    <Card style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+      <Card.Img src={season.image} style={{width:"25rem", height:"25rem"}}/>
       <Card.Body>
-        <Card.Title>{season.name}</Card.Title>
+        <Card.Title style={{textAlign:"center"}}>{season.name}</Card.Title>
         <Card.Text>{season.description}</Card.Text>
         <h6>Participantes</h6>
+        <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap"}}>
         {season.queens.map(eachQueen => {
           return (
-            <Card>
+            <Card style={{width:"14rem"}}>
               <Card.Body>
                 <Card.Title>{eachQueen.name}</Card.Title>
                 <Card.Text>Puesto:{eachQueen.ranking}</Card.Text>
@@ -47,6 +48,7 @@ function SeasonCard() {
             </Card>
           )
         })}
+        </div>
         <Link to={"/informationPage/" + season.id}>
           <Button as={Link} to="/informationPage">Back</Button>
         </Link>

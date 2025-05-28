@@ -25,26 +25,26 @@ function App() {
     <div id="App">
       <NavBar handleShow={handleShow} />
       <div>
-        <Offcanvas className="" show={show} onHide={handleClose}>
+        <Offcanvas id="sideBar" show={show} onHide={handleClose} style={{backgroundColor: 'rgb(244, 250, 172)' }}>
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Menu</Offcanvas.Title>
+            <Offcanvas.Title style={{textAlign:"center", color:"white"}}>Menu</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <ul>
-              <li>
-                <Link to="/">Inicio</Link>
+            <ul style={{textAlign: "center",}}>
+              <li style={{ marginBottom:"50px"}}>
+                <Link to="/" onClick={handleClose}>Inicio</Link>
               </li>
 
-              <li>
-                <Link to="/yourLists">Tus Favoritos</Link>
+              <li style={{ marginBottom:"50px"}}>
+                <Link to="/yourLists" onClick={handleClose}>Tus Favoritos</Link>
               </li>
 
-              <li>
-                <Link to="/informationPage">Investiga!</Link>
+              <li style={{ marginBottom:"50px"}}>
+                <Link to="/informationPage" onClick={handleClose}>Investiga!</Link>
               </li>
 
-              <li>
-                <Link to="/aboutUs">Conócenos!</Link>
+              <li style={{ marginBottom:"50px"}}>
+                <Link to="/aboutUs" onClick={handleClose}>Conócenos!</Link>
               </li>
             </ul>
           </Offcanvas.Body>

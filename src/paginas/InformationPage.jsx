@@ -80,7 +80,7 @@ function InformationPage() {
   }, []);
 
   return (
-    <div id="serchbar">
+    <div id="serchbar" style={{display:"flex", flexDirection:"column", justifyContent: "center"}}>
       <InputGroup className="mb-3" style={{width:"70%"}}>
         <Form.Control
           placeholder="Busca aquí a tu reina, epidodio o temporada"
@@ -104,12 +104,12 @@ function InformationPage() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <>
               <h2>Reinas que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly",gap:"15px"}}>
                 {filteredQueens.length > 0 ? (
                   filteredQueens.map((eachQueen) => (
                     <Card style={{ width: "18rem" }}>
                       <Card.Img
-                        src={eachQueen.image}
+                        src={eachQueen.image[0]}
                         style={{ width: "18rem", height: "30rem" }}
                       />
                       <Card.Body>
@@ -118,7 +118,7 @@ function InformationPage() {
                         <Link to={"/informationPage/queens/" + eachQueen.id}>
                           <Button>+ info</Button>
                         </Link>
-                        <Button onClick={() => deleteQueen(eachQueen.id)}>
+                        <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
                           Sashay!
                         </Button>
                       </Card.Body>
@@ -131,7 +131,7 @@ function InformationPage() {
             </>
             <>
               <h2>Temporadas que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly", gap: "15px" }}>
                 {filteredSeasons.length > 0 ? (
                   filteredSeasons.map((eachSeason) => (
                     <Card style={{ width: "18rem" }}>
@@ -152,7 +152,7 @@ function InformationPage() {
             </>
             <>
               <h2>Episodios que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly", gap: "15px" }}>
                 {filteredEpisodes.length > 0 ? (
                   filteredEpisodes.map((eachEpisode) => (
                     <Card style={{ width: "18rem" }}>
@@ -185,7 +185,7 @@ function InformationPage() {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "space-between",
+              justifyContent: "space-evenly",
             }}
           >
             {fourQueens &&
@@ -193,7 +193,7 @@ function InformationPage() {
                 return (
                   <Card key={i} style={{ width: "18rem" }}>
                     <Card.Img
-                      src={eachQueen.image}
+                      src={eachQueen.image[0]}
                       style={{ width: "18rem", height: "30rem" }}
                     />
                     <Card.Body>
@@ -202,7 +202,7 @@ function InformationPage() {
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
-                      <Button onClick={() => deleteQueen(eachQueen.id)}>
+                      <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
                         Sashay!
                       </Button>
                     </Card.Body>
@@ -219,7 +219,7 @@ function InformationPage() {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "center",
+              justifyContent: "space-evenly",
               gap: "15px",
             }}
           >
@@ -234,7 +234,7 @@ function InformationPage() {
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
-                      <Button onClick={() => deleteQueen(eachQueen.id)}>
+                      <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
                         Sashay!
                       </Button>
                     </Card.Body>
@@ -248,7 +248,7 @@ function InformationPage() {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "space-between",
+              justifyContent: "space-evenly",
             }}
           >
             {seasons.map((eachSeason, i) => {
@@ -272,7 +272,7 @@ function InformationPage() {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "space-between",
+              justifyContent: "space-evenly",
             }}
           >
             {fourEpisodes &&

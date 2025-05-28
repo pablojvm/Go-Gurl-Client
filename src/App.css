@@ -13,7 +13,7 @@ body {
   flex-direction: column;
 }
 
-.sidebar {
+.sideBar {
   text-align: center;
   color: aqua;
   position: fixed;
@@ -24,7 +24,7 @@ body {
   height: 100vh;
   padding: 1rem;
   transition: left 0.3s ease;
-  background-color: rgb(250, 185, 240);
+  background-color: rgb(244, 250, 172);
   border-radius: 10px;
 }
 
