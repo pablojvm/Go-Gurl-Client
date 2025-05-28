@@ -57,6 +57,20 @@ function DragQueenCard() {
         <Card.Text>
         <p>Winner:{queen.winner ? "👑" : "❌"}</p>
         <p>Miss Congeniality:{queen.missCongeniality ? "👑" : "❌"}</p>
+        <p>Temporadas{
+        queen.seasons.map(eachSeason => {
+            return (
+              <Card>
+              <Card.Body>
+                <Card.Title>{eachSeason.temporada}</Card.Title>
+                <Card.Text>Puesto:{eachSeason.ranking}</Card.Text>
+              </Card.Body>
+
+            </Card>
+            )
+          })}
+
+        </p>
         <p>{queen.description}</p>
         </Card.Text>
         <Button

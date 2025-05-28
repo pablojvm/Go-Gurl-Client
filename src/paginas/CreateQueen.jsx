@@ -17,7 +17,7 @@ function CreateQueen() {
     e.preventDefault();
 
     const newQueen = {
-      image: image || "/public/descarga.jpeg",
+      image: image || "descarga.jpeg",
       name,
       winner,
       missCongeniality,
