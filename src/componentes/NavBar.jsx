@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Navbar.css"
+import "./NavBar.css"
 import Button from 'react-bootstrap/Button';
 
 function NavBar({handleShow}) {
