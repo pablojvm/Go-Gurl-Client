@@ -6,9 +6,9 @@ function NavBar({handleShow}) {
   return (
     <div id="navbar">
       <Button variant="outline-light" onClick={handleShow} >
-        <img src="/public/menu.png" id="menu"></img>
+        <img src="../public/menu.png" id="menu"></img>
       </Button>
-      <img src="/public/logo.png" id="logo"></img>
+      <img src="../public/logo.png" id="logo"></img>
     </div>
   )
 }

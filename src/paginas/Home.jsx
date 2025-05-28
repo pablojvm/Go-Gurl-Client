@@ -11,27 +11,27 @@ function Home() {
       <p>
         En este lugar encontraras toda la información acerca del concurso mas
         mariquita de la herstory! Te invitamos a navegar por nuestra web y a
-        elegir a tus travestis, tempporadas y capitulos favoritos.
+        elegir a tus travestis, temporadas y capitulos favoritos.
       </p>
       </div>
       <h2>Conoce a los Jueces</h2>
       <Carousel className="w-50">
         <Carousel.Item>
-          <img src="/public/supreme.jpg" className="d-block w-100 mx=auto"></img>
+          <img src="../public/supreme.jpg" className="d-block w-100 mx=auto"></img>
           <Carousel.Caption>
             <h3>Supremme Deluxe</h3>
             <p>Presentadora y juez principal</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="/public/losJavis.jpg" className="d-block w-100"></img>
+          <img src="../public/losJavis.jpg" className="d-block w-100"></img>
           <Carousel.Caption>
             <h3>Los Javis</h3>
             <p>Productores, creadores y jueces del concurso</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="/public/analocking.webp" className="d-block w-100"></img>
+          <img src="../public/analocking.webp" className="d-block w-100"></img>
           <Carousel.Caption>
             <h3>Anna Locking</h3>
             <p>
