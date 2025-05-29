@@ -8,33 +8,48 @@ import EditCard from "../componentes/EditCard";
 function DragQueenCard() {
   const params = useParams();
   const [queen, setQueens] = useState(null);
-  const [mostrarComponente, setMostrarComponente] = useState(false)
-  const [imagenActual, setImagenActual] = useState(0)
+  const [mostrarComponente, setMostrarComponente] = useState(false);
+  const [imagenActual, setImagenActual] = useState(0);
+
+  const handleToggleFav = async () => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
+        { isFav: !queen.isFav }
+      )
+      setQueens({
+      ...queen,
+      isFav: response.data.isFav
+    });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const cambiarImagen = () => {
-    setImagenActual((img) => 
-    queen.image.length > 1 ? (img === 0 ? 1 : 0) : 0)
-  }
+    setImagenActual((img) =>
+      queen.image.length > 1 ? (img === 0 ? 1 : 0) : 0
+    );
+  };
 
   const handleClick = () => {
-    setMostrarComponente(true)
-  }
+    setMostrarComponente(true);
+  };
   const handleClose = () => {
-    setMostrarComponente(false)
-  }
+    setMostrarComponente(false);
+  };
   const handleUpdate = async (updatedData) => {
-  try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
-      updatedData
-    );
-    setQueens(response.data);
-    setMostrarComponente(false); 
-  } catch (error) {
-    console.log(error);
-  }
-};
-
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
+        updatedData
+      );
+      setQueens(response.data);
+      setMostrarComponente(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getData();
@@ -54,57 +69,94 @@ function DragQueenCard() {
   if (!queen) return <p>Loading...</p>;
 
   return (
-    <div style={{display:"flex"}}>
+    <div style={{ display: "flex" }}>
       <div>
-    <Card style={{ flexDirection: "row", marginRight:"10px"}}>
-      <Card.Img src={queen.image[imagenActual]} style={{width:"25rem", height:"25rem"}}/>
-      <Card.Body>
-        <Card.Title>{queen.name}</Card.Title>
-        <Card.Text>
-        <p>Winner:{queen.winner ? "👑" : "❌"}</p>
-        <p>Miss Congeniality:{queen.missCongeniality ? "👑" : "❌"}</p>
-        <p>Temporadas{
-        queen.seasons.map(eachSeason => {
-            return (
-              <Card>
-              <Card.Body>
-                <Card.Title>{eachSeason.temporada}</Card.Title>
-                <Card.Text>Puesto:{eachSeason.ranking}</Card.Text>
-              </Card.Body>
-
-            </Card>
-            )
-          })}
-
-        </p>
-        <p>{queen.description}</p>
-        </Card.Text>
-        <Button
-          variant="primary"
-          as={Link}
-          to="/informationPage"
-          style={{ width: "70px" }}
-        >
-          Back
-        </Button>
-        <Button
-          variant="primary"
-          style={{ width: "70px", marginLeft: "5px"}}
-          onClick={handleClick}
-        >
-          Edit
-        </Button>
-        {queen.image.length > 1 && (
-        <Button onClick={cambiarImagen} style={{marginLeft: "5px"}}>Cambiar imagen</Button>
-      )}
-      </Card.Body>
-    </Card>
+        <Card style={{ flexDirection: "row", marginRight: "10px" }}>
+          <Card.Img
+            src={queen.image[imagenActual]}
+            style={{ width: "25rem", height: "25rem" }}
+          />
+          <Card.Body>
+            <Card.Title>{queen.name}</Card.Title>
+            <Card.Text
+              style={{ color: "black", textShadow: "none", fontSize: "16px" }}
+            >
+              <p style={{ color: "black", textShadow: "none" }}>
+                Winner:{queen.winner ? "👑" : "❌"}
+              </p>
+              <p style={{ color: "black", textShadow: "none" }}>
+                Miss Congeniality:{queen.missCongeniality ? "👑" : "❌"}
+              </p>
+              <p style={{ color: "black", textShadow: "none" }}>
+                Temporadas
+                {queen.seasons.map((eachSeason) => {
+                  return (
+                    <Card>
+                      <Card.Body>
+                        <Card.Title style={{ textShadow: "none" }}>
+                          {eachSeason.temporada}
+                        </Card.Title>
+                        <Card.Text
+                          style={{
+                            color: "black",
+                            textShadow: "none",
+                            fontSize: "16px",
+                          }}
+                        >
+                          Puesto:{eachSeason.ranking}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </p>
+              <p style={{ color: "black", textShadow: "none" }}>
+                {queen.description}
+              </p>
+            </Card.Text>
+            <Button
+              variant="primary"
+              as={Link}
+              to="/informationPage"
+              style={{ width: "70px" }}
+            >
+              Back
+            </Button>
+            <Button
+              variant="primary"
+              style={{ width: "70px", marginLeft: "5px" }}
+              onClick={handleClick}
+            >
+              Edit
+            </Button>
+            {queen.image.length > 1 && (
+              <Button onClick={cambiarImagen} style={{ marginLeft: "5px" }}>
+                Cambiar imagen
+              </Button>
+            )}
+            <Button
+              variant="outline-danger"
+              onClick={handleToggleFav}
+              style={{ marginLeft: "5px" }}
+            >
+              <img
+                src={queen.isFav ? "/corazon-rojo.png" : "/corazon.png"}
+                style={{ width: "30px" }}
+              />
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
+      <div>
+        {mostrarComponente && (
+          <EditCard
+            onClose={handleClose}
+            onUpdate={handleUpdate}
+            queenData={queen}
+          />
+        )}
+      </div>
     </div>
-    <div>
-      {mostrarComponente && <EditCard onClose={handleClose} onUpdate={handleUpdate} queenData={queen}/>}
-    </div>
-    </div>
-    
   );
 }
 

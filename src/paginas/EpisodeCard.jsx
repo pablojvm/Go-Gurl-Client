@@ -36,9 +36,10 @@ function EpisodeCard() {
         <Card.Title>{episode.title}</Card.Title>
 
         <Card.Text>
-          <p>Ganadora: {episode.episodeWinner}</p>
-          <p>Nº del capitulo: {episode.numberEpisode}</p>
-          <p>Ejemplo aqui antes de introducir el texto</p>
+          <p style={{color:"black", textShadow:"none"}}>Ganadora: {episode.episodeWinner}</p>
+          <p style={{color:"black", textShadow:"none"}}>Nº del capitulo: {episode.numberEpisode}</p>
+          <p style={{color:"black", textShadow:"none"}}>Expulsada:{episode.episodeLooser} </p>
+          <p style={{color:"black", textShadow:"none"}}>{episode.description}</p>
         </Card.Text>
 
         <Button

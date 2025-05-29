@@ -113,8 +113,9 @@ function InformationPage() {
                         style={{ width: "18rem", height: "30rem" }}
                       />
                       <Card.Body>
+                        {eachQueen.winner && <p>👑</p>}
                         <Card.Title>{eachQueen.name}</Card.Title>
-                        <Card.Text>{eachQueen.description}</Card.Text>
+                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
                         <Link to={"/informationPage/queens/" + eachQueen.id}>
                           <Button>+ info</Button>
                         </Link>
@@ -138,7 +139,7 @@ function InformationPage() {
                       <Card.Img src={eachSeason.image} />
                       <Card.Body>
                         <Card.Title>{eachSeason.name}</Card.Title>
-                        <Card.Text>{eachSeason.capitulos}</Card.Text>
+                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachSeason.capitulos}</Card.Text>
                         <Link to={"/informationPage/seasons/" + eachSeason.id}>
                           <Button>+ info</Button>
                         </Link>
@@ -158,7 +159,7 @@ function InformationPage() {
                     <Card style={{ width: "18rem" }}>
                       <Card.Body>
                         <Card.Title>{eachEpisode.title}</Card.Title>
-                        <Card.Text>
+                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>
                           Ejemplo aqui antes de introducir el texto
                         </Card.Text>
                         <Link
@@ -191,14 +192,15 @@ function InformationPage() {
             {fourQueens &&
               fourQueens.map((eachQueen, i) => {
                 return (
-                  <Card key={i} style={{ width: "18rem" }}>
+                  <Card key={i} style={{ width: "18rem"}}>
                     <Card.Img
                       src={eachQueen.image[0]}
                       style={{ width: "18rem", height: "30rem" }}
                     />
                     <Card.Body>
+                      {eachQueen.winner && <p>👑</p>}
                       <Card.Title>{eachQueen.name}</Card.Title>
-                      <Card.Text>{eachQueen.description}</Card.Text>
+                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
@@ -230,7 +232,7 @@ function InformationPage() {
                     <Card.Img src={eachQueen.image} />
                     <Card.Body>
                       <Card.Title>{eachQueen.name}</Card.Title>
-                      <Card.Text>{eachQueen.description}</Card.Text>
+                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
@@ -257,7 +259,7 @@ function InformationPage() {
                   <Card.Img src={eachSeason.image} />
                   <Card.Body>
                     <Card.Title>{eachSeason.name}</Card.Title>
-                    <Card.Text>{eachSeason.capitulos}</Card.Text>
+                    <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachSeason.capitulos}</Card.Text>
                     <Link to={"/informationPage/seasons/" + eachSeason.id}>
                       <Button>+ info</Button>
                     </Link>
@@ -281,7 +283,7 @@ function InformationPage() {
                   <Card key={i} style={{ width: "18rem" }}>
                     <Card.Body>
                       <Card.Title>{eachEpisode.title}</Card.Title>
-                      <Card.Text>
+                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>
                         Ejemplo aqui antes de introducir el texto
                       </Card.Text>
                       <Link to={"/informationPage/episodes/" + eachEpisode.id}>

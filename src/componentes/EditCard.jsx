@@ -20,9 +20,9 @@ function EditCard({ onClose, onUpdate, queenData }) {
     <div style={{ display: "flex"}}>
       <div>
         <Card style={{ flexDirection: "row"}}>
-          <Card.Img src={queenData.image} style={{width: "18rem", height:"25rem"}}/>
-          <Card.Body>
-            <form onSubmit={handleFormSubmit}>
+          <Card.Img src={queenData.image[0]} style={{width: "18rem", height:"25rem"}}/>
+          <Card.Body >
+            <form onSubmit={handleFormSubmit} style={{display: "flex", flexDirection: "column"}}>
               <label>Name:</label>
               <input
                 name="name"
@@ -37,10 +37,11 @@ function EditCard({ onClose, onUpdate, queenData }) {
                 onChange={(e) => setDescription(e.target.value)}
               />
 
-              <p>Winner:{queenData.winner ? "👑" : "❌"}</p>
-              <p>
+              <p style={{color:"black", textShadow:"none"}}>Winner:{queenData.winner ? "👑" : "❌"}</p>
+              <p style={{color:"black", textShadow:"none"}}>
                 Miss Congeniality:{queenData.missCongeniality ? "👑" : "❌"}
               </p>
+              <div>
               <Button
                 variant="primary"
                 onClick={onClose}
@@ -55,6 +56,7 @@ function EditCard({ onClose, onUpdate, queenData }) {
               >
                 Done
               </Button>
+              </div>
             </form>
           </Card.Body>
         </Card>

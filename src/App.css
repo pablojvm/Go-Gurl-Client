@@ -2,10 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  background-color: rgb(255, 214, 254);
-  background-repeat: no-repeat;
-  background-size: contain ; 
-  color: white;
+  background-color: rgb(250, 209, 249);
 }
 
 #App {
@@ -13,30 +10,61 @@ body {
   flex-direction: column;
 }
 
-.sideBar {
-  text-align: center;
-  color: aqua;
-  position: fixed;
-  top: 35px;
-  margin-top: 20px;
-  left: -250px;
-  width: 90px;
-  height: 100vh;
-  padding: 1rem;
-  transition: left 0.3s ease;
-  background-color: rgb(244, 250, 172);
-  border-radius: 10px;
-}
-
-.sidebar.visible {
-  left: 0;
-}
-
-#footer {
-  top: 0px;
-
+.footer {
+  
+  bottom: 0px;
 }
 
 #aboutus {
   text-align: center;
+}
+
+.limelight-regular {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 10px;
+  text-shadow: 5px 2px 5px rgb(228, 138, 244);
+  color: white;
+}
+
+h2 {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 10px;
+  text-shadow: 5px 2px 5px rgb(228, 138, 244);
+  margin-bottom: 20px;
+  color: white;
+}
+
+#text {
+  font-size: 30px;
+  text-align: center;
+  width: 500px;
+  border: 5px solid rgb(254, 93, 214);
+  background-color: rgb(254, 93, 214);
+  border-radius: 10px;
+  text-shadow: 5px 2px 5px rgb(196, 18, 228);
+}
+
+h3 {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 10px;
+  text-shadow: 5px 2px 5px rgb(228, 138, 244);
+  color: white;
+}
+
+p{
+  font-size: 20px;
+  text-shadow: 5px 2px 5px rgb(228, 138, 244);
+  color: white;
 }

@@ -35,12 +35,12 @@ function CreateQueen() {
   };
 
   return (
-    <div>
+    <div style={{textAlign:"center", display:"flex", flexDirection:"column"}}>
       <h1>Crea tu propia REINA</h1>
-      <form onSubmit={handleSubmit}>
-        <Card style={{ width: "18rem" }}>
+      <form onSubmit={handleSubmit} style={{width:"30%"}}>
+        <Card style={{ width: "18rem", textAlign:"center" }}>
           <Card.Body>
-            <Card.Text>
+            <Card.Text style={{color:"black", textShadow:"none"}}>
               <label>Image:</label>
               <input
                 name="image"
@@ -82,7 +82,7 @@ function CreateQueen() {
             </Button>
             <Button
               variant="primary"
-              style={{ width: "70px", marginLeft: "5px" }}
+              style={{ width: "80px", marginLeft: "5px" }}
               type="submit"
             >
               Create!
