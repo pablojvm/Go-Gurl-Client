@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import EpisodeCard from "./paginas/EpisodeCard";
 import CreateQueen from "./paginas/CreateQueen";
 import SeasonCard from "./paginas/SeasonCard";
+import Error500 from "./paginas/Error500";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -129,6 +130,8 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
 
           <Route path="*" element={<Error404 />} />
+          <Route path="/500" element={<Error500 />} />
+
         </Routes>
       </div>
       <Footer id="footer" />

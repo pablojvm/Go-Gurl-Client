@@ -12,16 +12,18 @@ function CreateQueen() {
   const [winner, setWinner] = useState(false);
   const [missCongeniality, setMissCongeniality] = useState(false);
   const [description, setDescription] = useState("");
+  const [season, setSeason] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newQueen = {
-      image: image || "descarga.jpeg",
+      image: image ? [image] : ["descarga.jpeg"],
       name,
       winner,
       missCongeniality,
       description,
+      seasons: season ? [season] : [[""]]
     };
 
     axios
@@ -31,6 +33,7 @@ function CreateQueen() {
       })
       .catch((error) => {
         console.log(error);
+        navigate("/500")
       });
   };
 

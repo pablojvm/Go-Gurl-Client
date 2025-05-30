@@ -2,12 +2,13 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 function SeasonCard() {
 
   const params = useParams()
+  const navigate = useNavigate()
   const [season, setSeason] = useState(null)
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function SeasonCard() {
         setSeason(response.data);
       } catch (error) {
         console.log(error);
+        navigate("/500")
       }
     };
 
@@ -30,11 +32,12 @@ function SeasonCard() {
     return <p>Cargando temporada...</p>;
   }
   return (
-    <Card style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-      <Card.Img src={season.image} style={{width:"25rem", height:"25rem"}}/>
+    <div style={{display: "flex", flexDirection: "row", justifyContent:"center"}}>
+    <Card style={{display: "flex", flexDirection: "column", alignItems: "center", width:"35rem"}}>
+      <Card.Img src={season.image} style={{width:"25rem", height:"25rem", marginTop:"20px"}}/>
       <Card.Body>
         <Card.Title style={{textAlign:"center"}}>{season.name}</Card.Title>
-        <Card.Text>{season.description}</Card.Text>
+        <Card.Text >{season.description}</Card.Text>
         <h6>Participantes</h6>
         <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap"}}>
         {season.queens.map(eachQueen => {
@@ -54,6 +57,7 @@ function SeasonCard() {
         </Link>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 

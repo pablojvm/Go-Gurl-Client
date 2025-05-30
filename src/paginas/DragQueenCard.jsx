@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import EditCard from "../componentes/EditCard";
 
 function DragQueenCard() {
   const params = useParams();
+  const navigate = useNavigate()
   const [queen, setQueens] = useState(null);
   const [mostrarComponente, setMostrarComponente] = useState(false);
   const [imagenActual, setImagenActual] = useState(0);
@@ -23,6 +24,7 @@ function DragQueenCard() {
     });
     } catch (error) {
       console.log(error);
+      navigate("/500")
     }
   };
 
@@ -48,6 +50,7 @@ function DragQueenCard() {
       setMostrarComponente(false);
     } catch (error) {
       console.log(error);
+      navigate("/500")
     }
   };
 
@@ -60,20 +63,24 @@ function DragQueenCard() {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`
       );
+      console.log(response)
       setQueens(response.data);
     } catch (error) {
       console.log(error);
+      navigate("/500")
     }
   };
 
-  if (!queen) return <p>Loading...</p>;
+  if (!queen) {
+    return <p>Trayendo el episodio...</p>;
+  }
 
   return (
     <div style={{ display: "flex" }}>
       <div>
         <Card style={{ flexDirection: "row", marginRight: "10px" }}>
           <Card.Img
-            src={queen.image[imagenActual]}
+            src={queen.image[imagenActual] || "descarga.jpeg"}
             style={{ width: "25rem", height: "25rem" }}
           />
           <Card.Body>
@@ -89,9 +96,9 @@ function DragQueenCard() {
               </p>
               <p style={{ color: "black", textShadow: "none" }}>
                 Temporadas
-                {queen.seasons.map((eachSeason) => {
+                {queen.seasons.map((eachSeason, index) => {
                   return (
-                    <Card>
+                    <Card key={index}>
                       <Card.Body>
                         <Card.Title style={{ textShadow: "none" }}>
                           {eachSeason.temporada}

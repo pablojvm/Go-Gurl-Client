@@ -1,10 +1,12 @@
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function YourLists() {
 
   const [favQueens, setFavQueens] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -16,6 +18,7 @@ function YourLists() {
       setFavQueens(response.data.filter(favQueen => favQueen.isFav))
     } catch (error) {
       console.log(error);
+      navigate("/500")
     }
   };
 

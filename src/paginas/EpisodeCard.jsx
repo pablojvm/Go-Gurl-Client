@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +8,7 @@ import Card from "react-bootstrap/Card";
 function EpisodeCard() {
   
   const params = useParams()
+  const navigate = useNavigate()
   const [episode, setEpisode] = useState(null)
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function EpisodeCard() {
         setEpisode(response.data);
       } catch (error) {
         console.log(error);
+        navigate("/500")
       }
     };
 
@@ -31,9 +33,10 @@ function EpisodeCard() {
   }
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <div style={{ display:"flex", flexDirection:"row", justifyContent:"center"}}>
+    <Card style={{ width: "18rem" , textAlign:"center"}}>
       <Card.Body>
-        <Card.Title>{episode.title}</Card.Title>
+        <Card.Title style={{fontWeight:"bold"}}>{episode.title}</Card.Title>
 
         <Card.Text>
           <p style={{color:"black", textShadow:"none"}}>Ganadora: {episode.episodeWinner}</p>
@@ -52,6 +55,7 @@ function EpisodeCard() {
         </Button>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import "./InformationPage.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -10,6 +10,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 function InformationPage() {
   const params = useParams();
+  const navigate = useNavigate()
   const [queens, setQueens] = useState([]);
   const [fourQueens, setFourQueens] = useState([]);
   const [seasons, setSeasons] = useState([]);
@@ -38,6 +39,7 @@ function InformationPage() {
       })
       .catch((err) => {
         console.log(err);
+        navigate("/500")
       });
   }, []);
 
@@ -51,6 +53,7 @@ function InformationPage() {
       })
       .catch((error) => {
         console.log(error);
+        navigate("/500")
       });
   };
 
@@ -62,6 +65,7 @@ function InformationPage() {
       })
       .catch((err) => {
         console.log(err);
+        navigate("/500")
       });
   }, []);
 
@@ -76,22 +80,31 @@ function InformationPage() {
       })
       .catch((err) => {
         console.log(err);
+        navigate("/500")
       });
   }, []);
 
   return (
-    <div id="serchbar" style={{display:"flex", flexDirection:"column", justifyContent: "center"}}>
-      <InputGroup className="mb-3" style={{width:"70%"}}>
-        <Form.Control
-          placeholder="Busca aquí a tu reina, epidodio o temporada"
-          aria-label="Busca aquí a tu reina, epidodio o temporada"
-          aria-describedby="basic-addon2"
-          value={searchBar}
-          onChange={(e) => setSearchBar(e.target.value)}
-        />
-        <InputGroup.Text id="basic-addon2">Buscar</InputGroup.Text>
-      </InputGroup>
-
+    <div
+      id="serchbar"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
+        <InputGroup className="mb-3" style={{ width: "70%"}}>
+          <Form.Control
+            placeholder="Busca aquí a tu reina, epidodio o temporada"
+            aria-label="Busca aquí a tu reina, epidodio o temporada"
+            aria-describedby="basic-addon2"
+            value={searchBar}
+            onChange={(e) => setSearchBar(e.target.value)}
+          />
+          <InputGroup.Text id="basic-addon2">Buscar</InputGroup.Text>
+        </InputGroup>
+      </div>
       <div
         style={{
           display: "flex",
@@ -104,7 +117,14 @@ function InformationPage() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <>
               <h2>Reinas que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly",gap:"15px"}}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-evenly",
+                  gap: "15px",
+                }}
+              >
                 {filteredQueens.length > 0 ? (
                   filteredQueens.map((eachQueen) => (
                     <Card style={{ width: "18rem" }}>
@@ -115,11 +135,22 @@ function InformationPage() {
                       <Card.Body>
                         {eachQueen.winner && <p>👑</p>}
                         <Card.Title>{eachQueen.name}</Card.Title>
-                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
+                        <Card.Text
+                          style={{
+                            color: "black",
+                            textShadow: "none",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {eachQueen.description}
+                        </Card.Text>
                         <Link to={"/informationPage/queens/" + eachQueen.id}>
                           <Button>+ info</Button>
                         </Link>
-                        <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
+                        <Button
+                          style={{ marginLeft: "5px" }}
+                          onClick={() => deleteQueen(eachQueen.id)}
+                        >
                           Sashay!
                         </Button>
                       </Card.Body>
@@ -132,14 +163,29 @@ function InformationPage() {
             </>
             <>
               <h2>Temporadas que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly", gap: "15px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-evenly",
+                  gap: "15px",
+                }}
+              >
                 {filteredSeasons.length > 0 ? (
                   filteredSeasons.map((eachSeason) => (
                     <Card style={{ width: "18rem" }}>
                       <Card.Img src={eachSeason.image} />
                       <Card.Body>
                         <Card.Title>{eachSeason.name}</Card.Title>
-                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachSeason.capitulos}</Card.Text>
+                        <Card.Text
+                          style={{
+                            color: "black",
+                            textShadow: "none",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {eachSeason.capitulos}
+                        </Card.Text>
                         <Link to={"/informationPage/seasons/" + eachSeason.id}>
                           <Button>+ info</Button>
                         </Link>
@@ -153,13 +199,26 @@ function InformationPage() {
             </>
             <>
               <h2>Episodios que coincidden con tu búsqueda</h2>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly", gap: "15px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-evenly",
+                  gap: "15px",
+                }}
+              >
                 {filteredEpisodes.length > 0 ? (
                   filteredEpisodes.map((eachEpisode) => (
                     <Card style={{ width: "18rem" }}>
                       <Card.Body>
                         <Card.Title>{eachEpisode.title}</Card.Title>
-                        <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>
+                        <Card.Text
+                          style={{
+                            color: "black",
+                            textShadow: "none",
+                            fontSize: "16px",
+                          }}
+                        >
                           Ejemplo aqui antes de introducir el texto
                         </Card.Text>
                         <Link
@@ -192,7 +251,7 @@ function InformationPage() {
             {fourQueens &&
               fourQueens.map((eachQueen, i) => {
                 return (
-                  <Card key={i} style={{ width: "18rem"}}>
+                  <Card key={i} style={{ width: "18rem" }}>
                     <Card.Img
                       src={eachQueen.image[0]}
                       style={{ width: "18rem", height: "30rem" }}
@@ -200,11 +259,22 @@ function InformationPage() {
                     <Card.Body>
                       {eachQueen.winner && <p>👑</p>}
                       <Card.Title>{eachQueen.name}</Card.Title>
-                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
+                      <Card.Text
+                        style={{
+                          color: "black",
+                          textShadow: "none",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {eachQueen.description}
+                      </Card.Text>
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
-                      <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
+                      <Button
+                        style={{ marginLeft: "5px" }}
+                        onClick={() => deleteQueen(eachQueen.id)}
+                      >
                         Sashay!
                       </Button>
                     </Card.Body>
@@ -213,7 +283,7 @@ function InformationPage() {
               })}
           </div>
           <Link to={"/createQueen"}>
-            <Button style={{ marginTop: "20px" }}>Crea tu propia REINA!</Button>
+            <Button style={{ marginTop: "20px" }} size="lg">Crea tu propia REINA!</Button>
           </Link>
           {queens.length > 46 && <h2>Tus reinas</h2>}
           <div
@@ -232,11 +302,22 @@ function InformationPage() {
                     <Card.Img src={eachQueen.image} />
                     <Card.Body>
                       <Card.Title>{eachQueen.name}</Card.Title>
-                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachQueen.description}</Card.Text>
+                      <Card.Text
+                        style={{
+                          color: "black",
+                          textShadow: "none",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {eachQueen.description}
+                      </Card.Text>
                       <Link to={"/informationPage/queens/" + eachQueen.id}>
                         <Button>+ info</Button>
                       </Link>
-                      <Button style={{marginLeft: "5px"}} onClick={() => deleteQueen(eachQueen.id)}>
+                      <Button
+                        style={{ marginLeft: "5px" }}
+                        onClick={() => deleteQueen(eachQueen.id)}
+                      >
                         Sashay!
                       </Button>
                     </Card.Body>
@@ -259,7 +340,15 @@ function InformationPage() {
                   <Card.Img src={eachSeason.image} />
                   <Card.Body>
                     <Card.Title>{eachSeason.name}</Card.Title>
-                    <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>{eachSeason.capitulos}</Card.Text>
+                    <Card.Text
+                      style={{
+                        color: "black",
+                        textShadow: "none",
+                        fontSize: "16px",
+                      }}
+                    >
+                      {eachSeason.capitulos}
+                    </Card.Text>
                     <Link to={"/informationPage/seasons/" + eachSeason.id}>
                       <Button>+ info</Button>
                     </Link>
@@ -283,7 +372,13 @@ function InformationPage() {
                   <Card key={i} style={{ width: "18rem" }}>
                     <Card.Body>
                       <Card.Title>{eachEpisode.title}</Card.Title>
-                      <Card.Text style={{color:"black", textShadow:"none", fontSize:"16px"}}>
+                      <Card.Text
+                        style={{
+                          color: "black",
+                          textShadow: "none",
+                          fontSize: "16px",
+                        }}
+                      >
                         Ejemplo aqui antes de introducir el texto
                       </Card.Text>
                       <Link to={"/informationPage/episodes/" + eachEpisode.id}>
