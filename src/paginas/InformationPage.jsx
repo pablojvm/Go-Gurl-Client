@@ -299,7 +299,7 @@ function InformationPage() {
             }}
           >
             {queens &&
-              queens.slice(40).map((eachQueen, i) => {
+              queens.slice(46).map((eachQueen, i) => {
                 return (
                   <Card key={i} style={{ width: "18rem" }}>
                     <Card.Img src={eachQueen.image} />
