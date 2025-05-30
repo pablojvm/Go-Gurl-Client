@@ -26,10 +26,11 @@ function InformationPage() {
     e.title.toLowerCase().includes(searchBar.toLowerCase())
   );
 
-  useEffect(() => {  // llamada y codigo traido del backend mostrando solo 4 elementos al azar
+  const getData = () => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/queens`)
       .then((response) => {
+        console.log(response.data)
         setQueens(response.data);
         setFourQueens(
           [...response.data].sort(() => 0.5 - Math.random()).slice(0, 4)
@@ -39,19 +40,17 @@ function InformationPage() {
         console.log(err);
         navigate("/500")
       });
+  }
+
+  useEffect(() => {  // llamada y codigo traido del backend mostrando solo 4 elementos al azar
+     getData()
   }, []);
 
   const deleteQueen = (idToDelete) => {
     axios
       .delete(`${import.meta.env.VITE_SERVER_URL}/queens/${idToDelete}`)
       .then(() => {
-        setQueens((queenEliminada) =>
-          queenEliminada.filter((queen) => queen.id !== idToDelete)
-        );
-        setFourQueens((queenEliminada) => 
-          queenEliminada.filter((queen) => queen.id !== idToDelete)
-        )
-      
+        getData()
       })
       .catch((error) => {
         console.log(error);
@@ -94,6 +93,7 @@ function InformationPage() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        textAlign:"center"
       }}
     >
       <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
@@ -299,7 +299,7 @@ function InformationPage() {
             }}
           >
             {queens &&
-              queens.slice(46).map((eachQueen, i) => {
+              queens.slice(40).map((eachQueen, i) => {
                 return (
                   <Card key={i} style={{ width: "18rem" }}>
                     <Card.Img src={eachQueen.image} />
