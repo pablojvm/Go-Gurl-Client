@@ -40,7 +40,7 @@ function CreateQueen() {
   return (
     <div style={{textAlign:"center", display:"flex", flexDirection:"column"}}>
       <h1>Crea tu propia REINA</h1>
-      <form onSubmit={handleSubmit} style={{width:"30%"}}>
+      <form onSubmit={handleSubmit} style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
         <Card style={{ width: "18rem", textAlign:"center" }}>
           <Card.Body>
             <Card.Text style={{color:"black", textShadow:"none"}}>
