@@ -7,7 +7,7 @@ import AboutUs from "./paginas/AboutUs";
 import Error404 from "./paginas/Error404";
 import NavBar from "./componentes/NavBar";
 import Footer from "./componentes/Footer";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import { useState } from "react";
 import DragQueenCard from "./paginas/DragQueenCard";
 import Offcanvas from "react-bootstrap/Offcanvas";

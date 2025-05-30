@@ -14,7 +14,7 @@ function CreateQueen() {
   const [description, setDescription] = useState("");
   const [season, setSeason] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // Creacion de nueva carta
     e.preventDefault();
 
     const newQueen = {

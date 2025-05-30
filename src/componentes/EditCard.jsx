@@ -6,7 +6,7 @@ function EditCard({ onClose, onUpdate, queenData }) {
   const [name, setName] = useState(queenData.name);
   const [description, setDescription] = useState(queenData.description);
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e) => { // Hace la edicion de la carta
     e.preventDefault();
 
     const updatedCard = {

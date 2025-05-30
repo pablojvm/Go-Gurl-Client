@@ -12,7 +12,7 @@ function DragQueenCard() {
   const [mostrarComponente, setMostrarComponente] = useState(false);
   const [imagenActual, setImagenActual] = useState(0);
 
-  const handleToggleFav = async () => {
+  const handleToggleFav = async () => { //Añadir a lista de favoritos cambiando propiedad isFav
     try {
       const response = await axios.patch(
         `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
@@ -28,19 +28,21 @@ function DragQueenCard() {
     }
   };
 
-  const cambiarImagen = () => {
+  const cambiarImagen = () => { // Alterna entre imagenes
     setImagenActual((img) =>
       queen.image.length > 1 ? (img === 0 ? 1 : 0) : 0
     );
   };
 
-  const handleClick = () => {
+  const handleClick = () => { //Botones de desplegar y cerrar edicion 
     setMostrarComponente(true);
   };
   const handleClose = () => {
     setMostrarComponente(false);
   };
-  const handleUpdate = async (updatedData) => {
+
+
+  const handleUpdate = async (updatedData) => { //Boton de edición completa
     try {
       const response = await axios.patch(
         `${import.meta.env.VITE_SERVER_URL}/queens/${params.idDragQueen}`,
@@ -54,7 +56,7 @@ function DragQueenCard() {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {  // LLamada al backend para la información
     getData();
   }, [params.id]);
 

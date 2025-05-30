@@ -1,5 +1,4 @@
-import "./InformationPage.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +8,6 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 function InformationPage() {
-  const params = useParams();
   const navigate = useNavigate()
   const [queens, setQueens] = useState([]);
   const [fourQueens, setFourQueens] = useState([]);
@@ -18,7 +16,7 @@ function InformationPage() {
   const [fourEpisodes, setFourEpisodes] = useState([]);
   const [searchBar, setSearchBar] = useState("");
 
-  const filteredQueens = queens.filter((q) =>
+  const filteredQueens = queens.filter((q) =>                 // 3 .filter para la barra de busqueda
     q.name.toLowerCase().includes(searchBar.toLowerCase())
   );
   const filteredSeasons = seasons.filter((s) =>
@@ -28,7 +26,7 @@ function InformationPage() {
     e.title.toLowerCase().includes(searchBar.toLowerCase())
   );
 
-  useEffect(() => {
+  useEffect(() => {  // llamada y codigo traido del backend mostrando solo 4 elementos al azar
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/queens`)
       .then((response) => {
@@ -50,11 +48,16 @@ function InformationPage() {
         setQueens((queenEliminada) =>
           queenEliminada.filter((queen) => queen.id !== idToDelete)
         );
+        setFourQueens((queenEliminada) => 
+          queenEliminada.filter((queen) => queen.id !== idToDelete)
+        )
+      
       })
       .catch((error) => {
         console.log(error);
         navigate("/500")
       });
+    
   };
 
   useEffect(() => {
