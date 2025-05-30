@@ -1,12 +1,61 @@
-# React + Vite
+# GO-Gurl
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Logo](./public/logo.png)
 
-Currently, two official plugins are available:
+## DESCRIPCION
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Go-Gurl es un espacio queer que nos trae información acerca del fascinante mundo de Drag Race España. Podemos ver información acerca de las reinas que han participado en esete formato, de las temporadas que han salido y hasta de los episodios que se han emitido. También podras añadir a tus reinas favoritas a una lista de favoritos.
 
-## Expanding the ESLint configuration
+## Tecnologias y librerias
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- HTML, JS, CSS
+- Servidor Local JSON/ Node
+- BootStrap
+- React 
+- Vite
+
+## Funcionalidades
+
+- Crear reina nueva
+- Eliminar reina nueva
+- Editar cualquier reina
+- Añadir reinas a favoritos
+- Cambiar fotos de reinas(si estas tienen varias)
+- Barra de busqueda para encontrar el episodio, la temporada o reina que estes buscando
+
+# Estructura
+
+## User Stories
+
+- 404 - Pagina para el error 404NotFound
+- 500 - Pagina para errores de data
+- Home - Pagina inicial
+- InformationPage- Pagina de busqueda
+- Information Queen - Pagina de detalles de una reina
+- Information Season - Pagina de detalles de una temporada
+- Information Episode - Pagina de detalles de un episodio
+- YourList - Pagina donde encontrarás tu lista de favoritos
+- AboutUs - Pagina donde encontrarás información acerca del programador del sitio web
+
+# Rutas
+
+- /yourLists - Tu lista de favoritos
+- /informationPage - Pagina de informacion y busqueda
+- /createQueen - Pagina de creación de reina nueva
+- /informationPage/queens/:idDragQueen - Pagina de detalles de una reina
+- /informationPage/seasons/:idSeason - Pagina de detalles de una temporada
+- /informationPage/episodes/:idEpisode - Pagina de detalles de un episodio
+- /* - Pagina de error 404
+- /500 - Pagina de error 500
+
+# Otros componentes
+
+- NavBar
+- Footer
+
+# Links
+
+- Repositorio : https://github.com/pablojvm/Go-Gurl-Client
+- Repositorio server: https://github.com/pablojvm/Go-Gurl-Server 
+- Deploy : go-gurl.netlify.app
+- Slides : https://www.canva.com/design/DAGo6_bagJg/1kuTT2hezV4vzlZ04LPFPw/edit
