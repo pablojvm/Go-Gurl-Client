@@ -33,7 +33,7 @@ function InformationPage() {
         console.log(response.data)
         setQueens(response.data);
         setFourQueens(
-          [...response.data].sort(() => 0.5 - Math.random()).slice(0, 4)
+          [...response.data].slice(0, 46).sort(() => 0.5 - Math.random()).slice(0, 4)
         );
       })
       .catch((err) => {

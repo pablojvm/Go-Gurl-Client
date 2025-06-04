@@ -51,7 +51,7 @@ function App() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <ul style={{ textAlign: "center", fontSize: "30px" }}>
-              <li style={{ marginBottom: "50px" }}>
+              <li style={{ marginBottom: "40px" }}>
                 <Link
                   to="/"
                   onClick={handleClose}
@@ -64,7 +64,7 @@ function App() {
                 </Link>
               </li>
 
-              <li style={{ marginBottom: "50px" }}>
+              <li style={{ marginBottom: "40px" }}>
                 <Link
                   to="/yourLists"
                   onClick={handleClose}
@@ -77,7 +77,7 @@ function App() {
                 </Link>
               </li>
 
-              <li style={{ marginBottom: "50px" }}>
+              <li style={{ marginBottom: "40px" }}>
                 <Link
                   to="/informationPage"
                   onClick={handleClose}
@@ -90,7 +90,7 @@ function App() {
                 </Link>
               </li>
 
-              <li style={{ marginBottom: "50px" }}>
+              <li style={{ marginBottom: "40px" }}>
                 <Link
                   to="/aboutUs"
                   onClick={handleClose}
@@ -101,6 +101,18 @@ function App() {
                 >
                   Conócenos!
                 </Link>
+              </li>
+              <li style={{ marginBottom: "40px" }}>
+                <a
+                  href="https://pablojvm.github.io/drag-for-the-crown/"
+                  onClick={handleClose}
+                  style={{
+                    color: "rgb(111, 224, 253)",
+                    textShadow: "2px 2px 2px rgb(50, 148, 228)",
+                  }}
+                >
+                  Minijuego
+                </a>
               </li>
             </ul>
             <img src="supreme.png" />
